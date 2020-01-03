@@ -3,13 +3,12 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const FoldersService = require('./folder-service')
-
 const FolderRouter = express.Router()
 const bodyParser = express.json()
 
 const serializeFolder = folder => ({
   id: folder.id,
-  name: xss(folder.name)
+  name: xss(folder.folder_name)
 })
 
 FolderRouter
@@ -24,11 +23,11 @@ FolderRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { id, name } = req.body
-    const newFolder = { id, name }
-  
+    const { id, folder_name } = req.body
+    const newFolder = { id, folder_name }
 
-    for (const field of ['name']) {
+
+    for (const field of ['folder_name']) {
       if (!newFolder[field]) {
         logger.error(`${field} is required`)
         return res.status(400).send({
