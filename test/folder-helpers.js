@@ -1,51 +1,51 @@
 
-  function makeFoldersArray(name) {
+  function makeFoldersArray(folder_name) {
     return [
       {
         id: 1,
-        name: 'First test folder!',
+        folder_name: 'First test folder!',
         folderid: folder[1].id,
       },
       {
         id: 2,
-        name: 'Second test folder!',
+        folder_name: 'Second test folder!',
         folderid: folder[2].id,
       },
       {
         id: 3,
-        name: 'Third test folder!',
+        folder_name: 'Third test folder!',
         folderid: folder[3].id,
       },
       {
         id: 4,
-        name: 'Fourth test folder!',
+        folder_name: 'Fourth test folder!',
         folderid: folder[4].id,
       },
     ]
   }
 
-  function makeExpectedFolder(name, folderId) {
+  function makeExpectedFolder(folder_name, folderId) {
     const expectedFolders = folders
       .filter(folder => folder.id === folderId)
   
     return expectedFolders.map(recipe => {
-      const folderName = name.find(name => name.id === folder.name_id)
+      const folderName = folder_name.find(folder_name => folder_name.id === folder.folder_name_id)
       return {
         id: recipe.id,
-        name: folder.name,
+        folder_name: folder.folder_name,
         }
       })
     }
   
-  function makeMaliciousFolder(name) {
+  function makeMaliciousFolder(folder_name) {
     const maliciousFolder = {
       id: 911,
-      name: 'Naughty naughty very naughty <script>alert("xss");</script> Bad name <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.',
-      name_id: name.id,
+      folder_name: 'Naughty naughty very naughty <script>alert("xss");</script> Bad folder_name <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.',
+      folder_name_id: folder_name.id,
     }
     const expectedFolder = {
-      ...makeExpectedFolder([name], maliciousFolder),
-      name: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt; Bad name <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.',
+      ...makeExpectedFolder([folder_name], maliciousFolder),
+      folder_name: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt; Bad folder_name <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.',
     }
     return {
       maliciousFolder,
@@ -67,24 +67,24 @@
     )
   }
   
-  function seedFoldersTable(db, name, folders, recipes=[]) {
+  function seedFoldersTable(db, folder_name, folders, debtss=[]) {
     return db
-      .into('name')
-      .insert(name)
+      .into('folder_name')
+      .insert(folder_name)
       .then(() =>
         db
           .into('folders')
           .insert(folders)
       )
       .then(() =>
-        recipes.length && db.into('folder_recipes').insert(recipes)
+        debts.length && db.into('folder_debts').insert(debts)
       )
   }
   
-  function seedMaliciousFolder(db, name, folder) {
+  function seedMaliciousFolder(db, folder_name, folder) {
     return db
-      .into('name')
-      .insert([name])
+      .into('folder_name')
+      .insert([folder_name])
       .then(() =>
         db
           .into('folders')

@@ -107,7 +107,7 @@ describe('Folder Endpoints', function() {
           .get(`/api/folders/${maliciousFolder.id}`)
           .expect(200)
           .expect(res => {
-            expect(res.body.name).to.eql(expectedFolder.name)
+            expect(res.body.folder_name).to.eql(expectedFolder.folder_name)
           })
       })
     })
@@ -116,14 +116,14 @@ describe('Folder Endpoints', function() {
   describe(`POST /api/folders`, () => {
     it(`creates a folder, responding with 201 and the new folder`, () => {
       const newFolder = {
-        name: 'Test new folder',
+        folder_name: 'Test new folder',
       }
       return supertest(app)
         .post('/api/folders')
         .send(newFolder)
         .expect(201)
         .expect(res => {
-          expect(res.body.name).to.eql(newFolder.name)
+          expect(res.body.folder_name).to.eql(newFolder.folder_name)
           expect(res.body).to.have.property('id')
           expect(res.headers.location).to.eql(`/api/folders/${res.body.id}`)
         })
@@ -134,11 +134,11 @@ describe('Folder Endpoints', function() {
         )
     })
 
-    const requiredFields = ['name']
+    const requiredFields = ['folder_name']
 
     requiredFields.forEach(field => {
       const newFolder = {
-        name: 'Test new folder',
+        folder_name: 'Test new folder',
       }
 
       it(`responds with 400 and an error message when the '${field}' is missing`, () => {
@@ -160,7 +160,7 @@ describe('Folder Endpoints', function() {
         .send(maliciousFolder)
         .expect(201)
         .expect(res => {
-          expect(res.body.name).to.eql(expectedFolder.name)
+          expect(res.body.folder_name).to.eql(expectedFolder.folder_name)
         })
     })
   })
@@ -221,7 +221,7 @@ describe('Folder Endpoints', function() {
       it('responds with 204 and updates the folder', () => {
         const idToUpdate = 2
         const updateFolder = {
-          name: 'updated folder name',
+          folder_name: 'updated folder name',
         }
         const expectedFolder = {
           ...testFolders[idToUpdate - 1],
@@ -253,7 +253,7 @@ describe('Folder Endpoints', function() {
       it(`responds with 204 when updating only a subset of fields`, () => {
         const idToUpdate = 2
         const updateFolder = {
-          name: 'updated folder name',
+          folder_name: 'updated folder name',
         }
         const expectedFolder = {
           ...testFolders[idToUpdate - 1],
