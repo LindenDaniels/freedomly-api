@@ -2,19 +2,19 @@ function makeFoldersArray() {
     return [
       {
         id: 1,
-        folder_name: 'Breakfast',
+        folder_name: 'Car Loans',
       },
       {
         id: 2,
-        folder_name: 'Lunch',
+        folder_name: 'Home Loans',
       },
       {
         id: 3,
-        folder_name: 'Dinner',
+        folder_name: 'Credit Cards',
       },
       {
         id: 4,
-        folder_name: 'Dessert',
+        folder_name: 'Student Loans',
       },
     ];
   }
