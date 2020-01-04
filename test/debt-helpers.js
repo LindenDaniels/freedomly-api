@@ -33,14 +33,11 @@ function makeDebtsArray(debt_name) {
 }
 
 function makeExpectedDebt(debt_name, folderid, debt_amount) {
-  const debt_name = debt_name
-    .find(debt_name => debt_name.id === debt.debt_name_id)
+  const debtName = debt_name.find(debt_name => debt_name.id === debt.debt_name_id)
 
-  const folderid = folderid
-    .find(folder => folder.id === debt.folder_id)
+  const folder_id = folderid.find(folder => folder.id === debt.folder_id)
 
-  const debtAmount = debt_amount
-    .find(debt_amount => debt_amount.id === debt.debt_amount_id)
+  const debtAmount = debt_amount.find(debt_amount => debt_amount.id === debt.debt_amount_id)
 
 
   return {
@@ -48,9 +45,6 @@ function makeExpectedDebt(debt_name, folderid, debt_amount) {
     folderid: debt.folderid,
     debt_amount: debt.debt_amount,
     debt_name: debt.debt_name,
-    debt_name: {
-      id: debt_name.id,
-    },
   }
 }
 

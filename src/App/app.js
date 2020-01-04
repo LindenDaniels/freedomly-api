@@ -5,8 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('../config')
 const errorHandler = require('../ErrorHandlers/ErrorHandler')
-const RecipesRouter = require('../Recipes/recipe-router')
-const GroceryListRouter = require('../GroceryLists/lists-router')
+const DebtsRouter = require('../Debts/debt-router')
 const FoldersRouter = require('../Folders/folder-router')
 
 const app = express()
@@ -18,8 +17,7 @@ app.use(express.json())
 app.use(cors())
 app.use(helmet())
 
-app.use('/api/recipes', RecipesRouter)
-app.use('/api/lists', GroceryListRouter)
+app.use('/api/debts', DebtsRouter)
 app.use('/api/folders', FoldersRouter)
 
 app.get('/', (req, res) => {
