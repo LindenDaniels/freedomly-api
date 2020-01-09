@@ -6,40 +6,33 @@ function makeDebtsArray(debt_name) {
       debt_name: 'First test debt!',
       debt_name_id: debt_name[0].id,
       folderid: folder[1].id,
-      debt_amount: '$25000'
+      debt_amount: 25000
     },
     {
       id: 2,
       debt_name: 'Second test debt!',
       debt_name_id: debt_name[1].id,
       folderid: folder[3].id,
-      debt_amount: '$10000'
+      debt_amount: 10000
     },
     {
       id: 3,
       debt_name: 'Third test debt!',
       debt_name_id: debt_name[2].id,
       folderid: folder[4].id,
-      debt_amount: '$50000'
+      debt_amount: 50000
     },
     {
       id: 4,
       debt_name: 'Fourth test debt!',
       folderid: folder[5].id,
       debt_name_id: debt_name[3].id,
-      debt_amount: '$90'
+      debt_amount: 90
     },
   ]
 }
 
 function makeExpectedDebt(debt_name, folderid, debt_amount) {
-  /*const debtName = debt_name.find(name => name.id === debt.debt_name.id)
-
-  const folderid = folderid.find(folder => folder.id === debt.folder_id)
-
-  const debtAmount = debt_amount.find(debt_amount => debt_amount.id === debt.debt_amount_id)*/
-
-
   return {
     id: debt.id,
     folderid: debt.folderid,
@@ -55,7 +48,6 @@ function makeExpectedDebtAmounts(debt_name, debtId, debt_amount) {
     .filter(debt_amount => debt_amount.debt_id === debtId)
 
   return expectedDebtAmounts.map(debtAmount => {
-    /*const debtAmount = debt_amount.find(debt_amount => debt_name.id === debt_amount.debt_name_id)*/
     return {
       id: debt_amount.id,
       debt_name: debt.debt_name,
