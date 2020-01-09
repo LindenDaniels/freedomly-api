@@ -59,7 +59,7 @@ describe('Folder Endpoints', function() {
           .get(`/api/folders`)
           .expect(200)
           .expect(res => {
-            expect(res.body[0].name).to.eql(expectedFolder.name)
+            expect(res.body[0].folder_name).to.eql(expectedFolder.folder_name)
           })
       })
     })

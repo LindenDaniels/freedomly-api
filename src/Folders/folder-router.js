@@ -3,12 +3,13 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const FoldersService = require('./folder-service')
+
 const FolderRouter = express.Router()
 const bodyParser = express.json()
 
 const serializeFolder = folder => ({
   id: folder.id,
-  name: xss(folder.folder_name)
+  folder_name: xss(folder.folder_name)
 })
 
 FolderRouter
@@ -23,9 +24,9 @@ FolderRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { id, folder_name } = req.body
-    const newFolder = { id, folder_name }
-
+    const { folder_name } = req.body
+    const newFolder = { folder_name }
+  
 
     for (const field of ['folder_name']) {
       if (!newFolder[field]) {
@@ -89,8 +90,8 @@ FolderRouter
   })
 
   .patch(bodyParser, (req, res, next) => {
-    const { name } = req.body
-    const folderToUpdate = { name }
+    const { folder_name } = req.body
+    const folderToUpdate = { folder_name }
 
     const numberOfValues = Object.values(folderToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {

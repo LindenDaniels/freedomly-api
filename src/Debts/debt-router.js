@@ -10,7 +10,7 @@ const serializeDebt = debt => ({
   id: debt.id,
   folderid: debt.folderid,
   debt_name: xss(debt.debt_name),
-  debt_amount: xss(debt.debt_amount),
+  debt_amount: debt.debt_amount,
 })
 
 DebtRouter
@@ -98,7 +98,7 @@ DebtRouter
       logger.error(`Invalid update without required fields`)
       return res.status(400).json({
         error: {
-          message: `Request body must contain fields debt_name, debt_amount, and .`
+          message: `Request body must contain fields debt_name and debt_amount`
         }
       })
     }

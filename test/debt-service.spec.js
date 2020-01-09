@@ -120,13 +120,14 @@ describe('Debt Endpoints', function () {
       const newDebt = {
         debt_name: 'Test new debt',
         folderid: 2,
-        debt_amount: '$800',
+        debt_amount: 800,
       }
       return supertest(app)
         .post('/api/debts')
         .send(newDebt)
         .expect(201)
         .expect(res => {
+          console.log(res.body);
           expect(res.body.debt_name).to.eql(newDebt.debt_name)
           expect(res.body.debt_amount).to.eql(newDebt.debt_amount)
           expect(res.body).to.have.property('id')
@@ -160,19 +161,6 @@ describe('Debt Endpoints', function () {
             error: { message: `Field '${field}' is required` }
           })
       })
-    })
-
-    it('removes XSS attack debt_amount from response', () => {
-      const { maliciousDebt, expectedDebt } = makeMaliciousDebt()
-      return supertest(app)
-        .post(`/api/debts`)
-        .send(maliciousDebt)
-        .expect(201)
-        .expect(res => {
-          expect(res.body.debt_name).to.eql(expectedDebt.debt_name)
-          expect(res.body.folderid).to.eql(expectedDebt.folderid)
-          expect(res.body.debt_amount).to.eql(expectedDebt.debt_amount)
-        })
     })
   })
 
@@ -235,7 +223,7 @@ describe('Debt Endpoints', function () {
         const updateDebt = {
           debt_name: 'updated debt name',
           debt_amount:
-            '$4000',
+            4000,
         }
         const expectedDebt = {
           ...testDebts[idToUpdate - 1],
@@ -259,7 +247,7 @@ describe('Debt Endpoints', function () {
           .send({ irrelevantField: 'foo' })
           .expect(400, {
             error: {
-              message: `Request body must contain fields debt name and debt amount`
+              message: `Request body must contain fields debt_name and debt_amount`
             }
           })
       })
