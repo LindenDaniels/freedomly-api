@@ -1,4 +1,4 @@
-<h1>Freedomly Api</h1>
+<h1>Freedomly API</h1>
 
 <a href="https://github.com/LindenDaniels/freedomly-app">Freedomly App</a>
 
