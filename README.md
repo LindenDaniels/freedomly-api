@@ -1,6 +1,6 @@
 <h1>Freedomly Api</h1>
 
-This is the API for the Freedomly app found here: https://github.com/LindenDaniels/freedomly-app
+<a href="https://github.com/LindenDaniels/freedomly-app">Freedomly Repo</a>
 
 <h2>Folders</h2>
 <ul>
