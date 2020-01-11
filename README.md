@@ -1,6 +1,6 @@
 <h1>Freedomly Api</h1>
 
-<a href="https://github.com/LindenDaniels/freedomly-app">Freedomly Repo</a>
+<a href="https://github.com/LindenDaniels/freedomly-app">Freedomly App</a>
 
 <h2>Folders</h2>
 <ul>
